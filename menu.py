@@ -1,4 +1,5 @@
-import authentication;
+import json;
+import os;
 menu = {
     1: {"name": "Veg Burger", "price": 80},
     2: {"name": "Cheese Burger", "price": 100},
@@ -106,4 +107,4 @@ def menu_handling():
             print("Invalid choice!")
 
 
-menu_handling()
+menu_handling()#roehebejeudv3v3
