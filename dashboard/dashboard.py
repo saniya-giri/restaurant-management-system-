@@ -27,7 +27,7 @@ def admin_dashboard(admin_name):
 
         elif choice == "2":
             print("\n====================================================")
-            print("=============== INVENTORY MANAGEMENT ===============")
+            print("============ === INVENTORY MANAGEMENT ===============")
             print("====================================================\n")
             print("1. Add Item")
             print("2. Update Item")
