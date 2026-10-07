@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "size": "VIP",
+        "capacity": 20,
+        "booked": 0
+    },
+    {
+        "id": 2,
+        "size": "Medium",
+        "capacity": 20,
+        "booked": 0
+    },
+    {
+        "id": 3,
+        "size": "Short",
+        "capacity": 20,
+        "booked": 0
+    },
+    {
+        "id": 4,
+        "size": "1",
+        "capacity": 2,
+        "booked": 0
+    }
+]
