@@ -1,0 +1,128 @@
+[
+    {
+        "id": 1,
+        "name": "Paneer",
+        "quantity": 50,
+        "unit": "kg"
+    },
+    {
+        "id": 2,
+        "name": "Cheese",
+        "quantity": 20,
+        "unit": "kg"
+    },
+    {
+        "id": 3,
+        "name": "Flour",
+        "quantity": 100,
+        "unit": "kg"
+    },
+    {
+        "id": 4,
+        "name": "Chicken",
+        "quantity": 80,
+        "unit": "kg"
+    },
+    {
+        "id": 5,
+        "name": "Mutton",
+        "quantity": 40,
+        "unit": "kg"
+    },
+    {
+        "id": 6,
+        "name": "Fish",
+        "quantity": 60,
+        "unit": "kg"
+    },
+    {
+        "id": 7,
+        "name": "Eggs",
+        "quantity": 200,
+        "unit": "pcs"
+    },
+    {
+        "id": 8,
+        "name": "Vegetables",
+        "quantity": 200,
+        "unit": "kg"
+    },
+    {
+        "id": 9,
+        "name": "Oil",
+        "quantity": 100,
+        "unit": "litre"
+    },
+    {
+        "id": 10,
+        "name": "Spices",
+        "quantity": 50,
+        "unit": "kg"
+    },
+    {
+        "id": 11,
+        "name": "Rice",
+        "quantity": 150,
+        "unit": "kg"
+    },
+    {
+        "id": 12,
+        "name": "Noodles",
+        "quantity": 100,
+        "unit": "kg"
+    },
+    {
+        "id": 13,
+        "name": "Sauces",
+        "quantity": 40,
+        "unit": "litre"
+    },
+    {
+        "id": 14,
+        "name": "Milk",
+        "quantity": 80,
+        "unit": "litre"
+    },
+    {
+        "id": 15,
+        "name": "Coffee Powder",
+        "quantity": 20,
+        "unit": "kg"
+    },
+    {
+        "id": 16,
+        "name": "Ice Cream",
+        "quantity": 30,
+        "unit": "kg"
+    },
+    {
+        "id": 17,
+        "name": "Fruits",
+        "quantity": 100,
+        "unit": "kg"
+    },
+    {
+        "id": 18,
+        "name": "Bread",
+        "quantity": 50,
+        "unit": "pack"
+    },
+    {
+        "id": 19,
+        "name": "Potatoes",
+        "quantity": 100,
+        "unit": "kg"
+    },
+    {
+        "id": 20,
+        "name": "Soda/Cold Drink",
+        "quantity": 200,
+        "unit": "bottle"
+    },
+    {
+        "id": 21,
+        "name": "ghee",
+        "quantity": 5,
+        "unit": "litre"
+    }
+]
