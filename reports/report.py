@@ -1,28 +1,45 @@
-import json, os
+import json
+import os
 
 ORDERS_FILE = "database/orders.json"
-TABLES_FILE = "database/tables.json"
-MENU_FILE = "database/menu.json"
+BILL_FILE = "database/bills.json"
+INV_FILE = "database/inventory.json"
 
 def load_json(file):
     if not os.path.exists(file):
         return []
-    with open(file, "r") as f:
-        return json.load(f)
+    try:
+        with open(file, "r") as f:
+            return json.load(f)
+    except json.JSONDecodeError:
+        return []
 
-def show_report():
+def reports():
     orders = load_json(ORDERS_FILE)
-    tables = load_json(TABLES_FILE)
-    menu = load_json(MENU_FILE)
+    bills = load_json(BILL_FILE)
+    inventory = load_json(INV_FILE)
+
+    print("\n==================== REPORTS ====================")
 
     total_orders = len(orders)
-    total_revenue = sum(order["total_amount"] for order in orders) if orders else 0
-    total_tables = len(tables)
-    booked_tables = sum(t["booked"] for t in tables) if tables else 0
-    total_menu_items = len(menu)
-
-    print("\n=== REPORT SUMMARY ===")
     print(f"Total Orders: {total_orders}")
-    print(f"Total Revenue: ₹{total_revenue}")
-    print(f"Total Tables: {total_tables} | Booked Seats: {booked_tables}")
-    print(f"Total Menu Items: {total_menu_items}")
+
+    total_bills = len(bills)
+    print(f"Total Bills: {total_bills}")
+
+    total_revenue = sum(b['total_bill'] for b in bills)
+    print(f" Total Revenue: ₹{total_revenue}")
+
+    dish_count = {}
+    for o in orders:
+        dish_count[o['dish']] = dish_count.get(o['dish'], 0) + int(o['quantity'])
+    if dish_count:
+        top_dish = max(dish_count, key=dish_count.get)
+        print(f" Top Selling Dish: {top_dish} ({dish_count[top_dish]} orders)")
+
+    print("\nInventory Status:")
+    print("{:<6} {:<20} {:<10} {:<10}".format("ID", "Item", "Quantity", "Unit"))
+    print("---------------------------------------------------")
+    for i in inventory:
+        print("{:<6} {:<20} {:<10} {:<10}".format(i['id'], i['item'], i['quantity'], i['unit']))
+    print("===================================================\n")

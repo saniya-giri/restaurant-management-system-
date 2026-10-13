@@ -1,95 +1,57 @@
-from auth import sign_in, sign_up
-def show_menu():
-    while True:
-        print("\n===========================================================")
-        print("========== Welcome to Restaurant Management System ==========")
-        print("=============================================================")
-        print("\n===================== AUTH MENU ===================")
-        print("1. Admin")
-        print("2. Staff")
-        print("3. Exit")
-        print("\n==========================================")
-        choice = input("Enter choice: ")
-        print("==========================================")
+from auth.sign_up import admin_signup, load_data
+from auth.sign_in import admin_login, staff_login
+from dashboard.dashboard import admin_dashboard, staff_dashboard
+ADMIN_FILE = "database/admin.json"
 
-        if choice == "1":
-            admin_menu()
-
-        elif choice == "2":
-            staff_menu()
-
-        elif choice == "3":
-            exit()
-
-        else:
-            print("\n--------- Invalid choice ---------")
-
-
-def admin_menu():
-
-    from auth.sign_up import load_data, ADMIN_FILE
-
+def main_menu():
     while True:
         admin = load_data(ADMIN_FILE)
-
-        print("\n========================================================")
-        print("========================= ADMIN ========================")
-        print("========================================================\n")
-        if len(admin) == 0:
-
-            print("1. Sign Up")
+        if not admin:
+            print("\n=====================================================")
+            print("========== RESTAURANT MANAGEMENT SYSTEM ============")
+            print("=====================================================\n")
+            print("1. Admin Sign Up")
             print("2. Back")
-            print("\n==========================================")
-            choice = input("Enter choice: ")
-            print("==========================================\n")
+            print("\n=====================================================")
+            choice = input("Enter your choice: ")
+            print("=====================================================\n")
             if choice == "1":
-                sign_up.admin_signup()
-
+                admin_signup()
             elif choice == "2":
+                print("---------- Exit ----------")
                 break
-
             else:
-                print("----------- Invalid choice -----------")
+                print("------------- Invalid choice -------------")
         else:
-            print("1. Sign In")
-            print("2. Back")
+            login_menu()
 
-            print("\n==========================================")
-            choice = input("Enter choice:- ")
-            print("==========================================\n")
-            if choice == "1":
-                sign_in.admin_login()
-            elif choice == "2":
-                break
-            else:
-                print("----------- Invalid choice -----------")
-
-def staff_menu():
-
+def login_menu():
     while True:
-
-        print("\n=================================================")
-        print("===================== STAFF =====================")
-        print("=================================================\n")
-        print("1. Sign Up")
-        print("2. Sign In")
-        print("3. Back")
-        print("==========================================")
-        choice = input("Enter choice: ")
-        print("==========================================")
+        print("\n=====================================================")
+        print("======================= LOGIN =======================")
+        print("=====================================================\n")
+        print("1. Admin Sign In")
+        print("2. Staff Sign In")
+        print("3. Exit")
+        print("\n=====================================================")
+        choice = input("Enter your choice: ")
+        print("=====================================================\n")
 
         if choice == "1":
-
-            sign_up.staff_signup()
+            admin_name = admin_login()
+            if admin_name:
+                admin_dashboard(admin_name)
 
         elif choice == "2":
+            staff_name = staff_login
 
-            sign_in.staff_login()
+            if staff_name:
+                staff_dashboard(staff_name)     
+            else:
+                print("\n---------- Please Sign Up first ----------")
 
         elif choice == "3":
-
             break
 
         else:
-
-            print("---------- Invalid choice -----------")
+            print("\n------------ Invalid choice ------------")

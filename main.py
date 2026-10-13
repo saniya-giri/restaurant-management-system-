@@ -1,5 +1,4 @@
-from auth.menu import show_menu
+from auth.menu import main_menu
 
 if __name__ == "__main__":
-    show_menu()
-6
+    main_menu()

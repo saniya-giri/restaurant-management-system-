@@ -1,130 +1,88 @@
 import json
 import os
 
-INVENTORY_FILE = "database/inventory.json"
+INV_FILE = "database/inventory.json"
 
 def load_inventory():
-    """Load inventory data from JSON file"""
-    if not os.path.exists(INVENTORY_FILE):
+    if not os.path.exists(INV_FILE):
         return []
-    with open(INVENTORY_FILE, "r") as f:
-        return json.load(f)
+    try:
+        with open(INV_FILE, "r") as f:
+            return json.load(f)
+    except json.JSONDecodeError:
+        return []
 
 def save_inventory(data):
-    """Save inventory data to JSON file"""
-    with open(INVENTORY_FILE, "w") as f:
+    with open(INV_FILE, "w") as f:
         json.dump(data, f, indent=4)
 
 def view_inventory():
-    """Display all inventory items"""
     inventory = load_inventory()
     if not inventory:
-        print("\n------ Inventory is empty ------")
-    else:
-        print("\n================ INVENTORY ITEMS ================")
-        for item in inventory:
-            print(f"ID: {item['id']} | {item['name']} - {item['quantity']} {item['unit']}")
+        print("Inventory is empty")
+        return
+
+    print("\n==================== INVENTORY ====================")
+    print("{:<6} {:<20} {:<10} {:<10}".format("ID", "Item", "Quantity", "Unit"))
+    print("---------------------------------------------------")
+    for i in inventory:
+        print("{:<6} {:<20} {:<10} {:<10}".format(i['id'], i['item'], i['quantity'], i['unit']))
+    print("===================================================\n")
 
 def add_item():
     inventory = load_inventory()
-    print("\n")
-    print("==============================================")
-    print("                 ADD ITEM")
-    print("==============================================")
+    item_id = str(len(inventory) + 1).zfill(3) 
+    item = input("Enter Raw Material Name: ")
+    quantity = input("Enter Quantity: ")
+    unit = input("Enter Unit (kg/litre/pcs): ")
 
-    name = input("Enter raw material name: ")
-    while name.strip() == "":
-        print("----- Raw material name cannot be empty -----")
-        name = input("Enter raw material name: ")
-
-    while True:
-        quantity = input("Enter quantity: ")
-        if quantity.isdigit() and int(quantity) > 0:
-            quantity = int(quantity)
-            break
-
-        print("----- Quantity must be a valid number -----")
-
-    while True:
-        unit = input("Enter unit (kg/litre/pcs): ").lower()
-        if unit in ["kg", "litre", "pcs"]:
-            break
-
-        print("----- Invalid unit -----")
-        print("Please enter kg, litre or pcs")
-
-    if len(inventory) == 0:
-        new_id = 1
-
-    else:
-        new_id = inventory[-1]["id"] + 1
-    inventory.append({
-        "id": new_id,
-        "name": name,
-        "quantity": quantity,
-        "unit": unit
-    })
+    new_item = {"id": item_id, "item": item, "quantity": quantity, "unit": unit}
+    inventory.append(new_item)
     save_inventory(inventory)
-    print("\n==============================================")
-    print("        Item added successfully!")
-    print("==============================================")
-    print("Item ID:", new_id)
-    print("Name:", name)
-    print("Quantity:", quantity)
-    print("Unit:", unit)
-    print("==============================================")
+    print(f" Item '{item}' added successfully!")
 
 def update_item():
-    """Update quantity of an existing raw material"""
     inventory = load_inventory()
-    item_id = int(input("Enter item ID to update: "))
-    for item in inventory:
-        if item["id"] == item_id:
-            item["quantity"] = int(input("Enter new quantity: "))
+    item_id = input("Enter Item ID to update: ")
+    for i in inventory:
+        if i["id"] == item_id:
+            new_qty = input("Enter new Quantity: ")
+            i["quantity"] = new_qty
             save_inventory(inventory)
-            print("Item updated successfully!")
+            print(f" Item {item_id} updated successfully!")
             return
     print("Item not found!")
 
 def delete_item():
-    """Delete a raw material from inventory"""
     inventory = load_inventory()
-    item_id = int(input("Enter item ID to delete: "))
-    new_inventory = [item for item in inventory if item["id"] != item_id]
-    save_inventory(new_inventory)
-    print("Item deleted successfully!")
+    item_id = input("Enter Item ID to delete: ")
+    updated_inventory = [i for i in inventory if i["id"] != item_id]
+    if len(updated_inventory) == len(inventory):
+        print(" Item not found!")
+    else:
+        save_inventory(updated_inventory)
+        print(f"Item {item_id} deleted successfully!")
 
-RECIPE_MAP = {
-    "Paneer Pizza": {"Paneer": 1, "Cheese": 1, "Flour": 1, "Vegetables": 1},
-    "Veg Pizza": {"Cheese": 1, "Flour": 1, "Vegetables": 1},
-    "Chicken Pizza": {"Chicken": 1, "Cheese": 1, "Flour": 1, "Vegetables": 1},
-    "Veg Burger": {"Bread": 1, "Vegetables": 1, "Cheese": 1},
-    "Paneer Burger": {"Bread": 1, "Paneer": 1, "Cheese": 1},
-    "Chicken Burger": {"Bread": 1, "Chicken": 1, "Cheese": 1},
-    "French Fries": {"Potatoes": 2, "Oil": 1},
-    "Peri Peri Fries": {"Potatoes": 2, "Oil": 1, "Spices": 1},
-    "Dal Rice": {"Rice": 1, "Spices": 1, "Vegetables": 1},
-    "Paneer Butter Masala": {"Paneer": 2, "Spices": 1, "Vegetables": 1},
-    "Chicken Biryani": {"Chicken": 2, "Rice": 2, "Spices": 1},
-    "Mutton Biryani": {"Mutton": 2, "Rice": 2, "Spices": 1},
-    "Cold Coffee": {"Milk": 1, "Coffee Powder": 1, "Ice Cream": 1},
-    "Mango Shake": {"Milk": 1, "Fruits": 1, "Ice Cream": 1}
-}
+def inventory_management():
+    while True:
+        print("\n========== INVENTORY MANAGEMENT ==========")
+        print("1. View Inventory")
+        print("2. Add Item")
+        print("3. Update Item")
+        print("4. Delete Item")
+        print("5. Back")
+        choice = input("Enter choice: ")
 
-
-def reduce_inventory(dish_name):
-    inventory = load_inventory()
-    if dish_name not in RECIPE_MAP:
-        print(f"No recipe found for {dish_name}.")
-        return
-
-    required = RECIPE_MAP[dish_name]
-    for material, qty in required.items():
-        for item in inventory:
-            if item["name"].lower() == material.lower():
-                if item["quantity"] >= qty:
-                    item["quantity"] -= qty
-                else:
-                    print(f"Not enough {material} in stock!")
-    save_inventory(inventory)
-    print(f"Inventory updated for {dish_name}.")
+        if choice == "1":
+            view_inventory()
+        elif choice == "2":
+            add_item()
+        elif choice == "3":
+            update_item()
+        elif choice == "4":
+            delete_item()
+        elif choice == "5":
+            print("Back to Admin Dashboard")
+            break
+        else:
+            print("Invalid choice! Try again.")

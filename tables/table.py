@@ -1,276 +1,296 @@
 import json
 import os
 import random
-import uuid
 import datetime
 
-
 TABLE_FILE = "database/tables.json"
-BOOKING_FILE = "database/booking.json"
+
+TABLE_RATES = {
+    "VIP": 1000,
+    "Medium": 500,
+    "Short": 250
+}
+
+TABLE_CAPACITY = {
+    "VIP": 8,
+    "Medium": 4,
+    "Short": 2
+}
 
 
 def load_tables():
-
     if not os.path.exists(TABLE_FILE):
         return []
 
-    with open(TABLE_FILE, "r") as f:
-        return json.load(f)
+    with open(TABLE_FILE, "r") as file:
+        return json.load(file)
 
+def save_tables(tables):
+    os.makedirs("database", exist_ok=True)
+
+    with open(TABLE_FILE, "w") as file:
+        json.dump(tables, file, indent=4)
 
 def generate_table_id(tables):
-
     while True:
-
         table_id = str(random.randint(10000, 99999))
 
-        if all(
-            table.get("table_id") != table_id
-            for table in tables
-        ):
+        if not any(table["id"] == table_id for table in tables):
             return table_id
 
-
-def save_tables(data):
-
-    folder = os.path.dirname(TABLE_FILE)
-
-    if not os.path.exists(folder):
-        os.makedirs(folder)
-
-    with open(TABLE_FILE, "w") as f:
-        json.dump(data, f, indent=4)
+def create_default_tables():
+    tables = load_tables()
 
 
-def load_bookings():
+    if tables:
+        return
 
-    if not os.path.exists(BOOKING_FILE):
-        return []
-
-    with open(BOOKING_FILE, "r") as f:
-        return json.load(f)
-
-
-def save_bookings(data):
-
-    folder = os.path.dirname(BOOKING_FILE)
-
-    if not os.path.exists(folder):
-        os.makedirs(folder)
-
-    with open(BOOKING_FILE, "w") as f:
-        json.dump(data, f, indent=4)
-
-
-def initialize_tables():
-
-    tables = []
-
-    # 20 VIP
-    for i in range(1, 21):
-
-        table_id = generate_table_id(tables)
-
-        tables.append({
-            "table_id": table_id,
-            "size": "VIP",
-            "capacity": 20,
-            "booked": 0
-        })
-
-    for i in range(21, 41):
-
-        table_id = generate_table_id(tables)
-
-        tables.append({
-            "table_id": table_id,
-            "size": "Medium",
-            "capacity": 20,
-            "booked": 0
-        })
-
-    for i in range(41, 61):
-
-        table_id = generate_table_id(tables)
-
-        tables.append({
-            "table_id": table_id,
-            "size": "Short",
-            "capacity": 20,
-            "booked": 0
-        })
-
+    for category in ["VIP", "Medium", "Short"]:
+        for i in range(10):
+            tables.append({
+                "id": generate_table_id(tables),
+                "capacity": TABLE_CAPACITY[category],
+                "charge": TABLE_RATES[category],
+                "category": category,
+                "status": "Available",
+                "booking_time": None
+            })
 
     save_tables(tables)
 
-    print("Tables initialized successfully!")
+
+# Automatically free tables after 2 hours
+def auto_update_status(tables):
+    current_time = datetime.datetime.now()
+
+    for table in tables:
+        if table["status"] == "Booked" and table["booking_time"]:
+            booking_time = datetime.datetime.fromisoformat(
+                table["booking_time"]
+            )
+
+            if current_time - booking_time >= datetime.timedelta(hours=2):
+                table["status"] = "Available"
+                table["booking_time"] = None
+
+    save_tables(tables)
+
+def print_table(tables, category_name):
+    category_tables = [
+        table for table in tables
+        if table["category"] == category_name
+    ]
+
+    print(f"\n{'=' * 65}")
+    print(f"{category_name.upper()} TABLES")
+    print("=" * 65)
+
+    print(f"{'Table ID':<15}{'Capacity':<15}{'Rate (Rs.)':<15}{'Status'}")
+    print("-" * 65)
+
+    for table in category_tables:
+        print(
+            f"{table['id']:<15}"
+            f"{str(table['capacity']) + ' People':<15}"
+            f"{table['charge']:<15}"
+            f"{table['status']}"
+        )
+
+    available = sum(
+        1 for table in category_tables
+        if table["status"] == "Available"
+    )
+
+    booked = sum(
+        1 for table in category_tables
+        if table["status"] == "Booked"
+    )
+
+    print("-" * 65)
+    print(f"Total Tables : {len(category_tables)}")
+    print(f"Available    : {available}")
+    print(f"Booked       : {booked}")
+
 
 def view_tables():
+    tables = load_tables()
+    auto_update_status(tables)
 
+    for category in ["VIP", "Medium", "Short"]:
+        print_table(tables, category)
+
+    print("\n" + "=" * 65)
+    print(f"TOTAL TABLES: {len(tables)}")
+    print("=" * 65)
+
+def add_table():
     tables = load_tables()
 
-    print("\n")
-    print("=" * 80)
-    print(" " * 27 + "TABLE MANAGEMENT")
-    print("=" * 80)
+    print("\n========== ADD TABLE ==========")
+    print("1. VIP     - Rs. 1000")
+    print("2. Medium  - Rs. 500")
+    print("3. Short   - Rs. 250")
 
-    print("==================================================================" )
+    choice = input("Select category: ").strip()
 
-    print("| No.   | Table ID| Table Type   | Capacity | Booked | Available |" )
+    categories = {
+        "1": "VIP",
+        "2": "Medium",
+        "3": "Short"
+    }
 
-    print( "==================================================================")
-    if not tables:
-        print("|                     No tables available                         |")
-    else:
+    if choice not in categories:
+        print("Invalid category!")
+        return
 
-        for index, table in enumerate(tables, start=1):
-
-            table_id = table["table_id"]
-            table_type = table["size"]
-            capacity = table["capacity"]
-            booked = table["booked"]
-
-            available = capacity - booked
-
-            print(
-                f"| {index:<5} "
-                f"| {table_id:<7} "
-                f"| {table_type:<12} "
-                f"| {capacity:<8} "
-                f"| {booked:<6} "
-                f"| {available:<9} |"
-            )
-    print("==================================================================")
-
-def add_table(table_type, capacity):
-
-    tables = load_tables()
-
-    table_id = generate_table_id(tables)
+    category = categories[choice]
 
     table = {
-        "table_id": table_id,
-        "size": table_type,
-        "capacity": capacity,
-        "booked": 0
+        "id": generate_table_id(tables),
+        "capacity": TABLE_CAPACITY[category],
+        "charge": TABLE_RATES[category],
+        "category": category,
+        "status": "Available",
+        "booking_time": None
     }
 
     tables.append(table)
-
     save_tables(tables)
 
-    print("\n==========================================")
-    print("Table added successfully")
-    print("Table ID:", table_id)
-    print("==========================================")
-
+    print("\nTable added successfully!")
+    print(f"Table ID : {table['id']}")
+    print(f"Category : {category}")
+    print(f"Capacity : {table['capacity']} People")
+    print(f"Rate     : Rs. {table['charge']}")
 
 def update_table():
-
     tables = load_tables()
+    auto_update_status(tables)
 
-    view_tables()
+    table_id = input("Enter 5-digit Table ID: ").strip()
 
-    table_id = input("Enter Table ID to update: ")
+    for table in tables:
+        if table["id"] == table_id:
+            if table["status"] == "Booked":
+                print("Booked table cannot be updated!")
+                return
 
-    for t in tables:
+            print("\n1. VIP")
+            print("2. Medium")
+            print("3. Short")
 
-        if t["table_id"] == table_id:
+            choice = input("Select new category: ").strip()
 
-            t["size"] = input("Enter New Size: ")
+            categories = {
+                "1": "VIP",
+                "2": "Medium",
+                "3": "Short"
+            }
 
-            t["capacity"] = int(
-                input("Enter New Capacity: ")
-            )
+            if choice not in categories:
+                print("Invalid category!")
+                return
+
+            category = categories[choice]
+
+            table["category"] = category
+            table["capacity"] = TABLE_CAPACITY[category]
+            table["charge"] = TABLE_RATES[category]
 
             save_tables(tables)
-
             print("Table updated successfully!")
+            return
+
+    print("Table ID not found!")
+
+def book_table():
+    tables = load_tables()
+    auto_update_status(tables)
+
+    table_id = input("Enter 5-digit Table ID: ").strip()
+
+    for table in tables:
+        if table["id"] == table_id:
+            if table["status"] == "Booked":
+                print("This table is already booked!")
+                return
+
+            print("\n========== TABLE DETAILS ==========")
+            print(f"Table ID : {table['id']}")
+            print(f"Category : {table['category']}")
+            print(f"Capacity : {table['capacity']} People")
+            print(f"Rate     : Rs. {table['charge']}")
+
+            confirm = input("Confirm booking? (yes/no): ").strip().lower()
+
+            if confirm == "yes":
+                table["status"] = "Booked"
+                table["booking_time"] = datetime.datetime.now().isoformat()
+
+                save_tables(tables)
+                print("Table booked successfully!")
+            else:
+                print("Booking cancelled.")
 
             return
 
-    print("Table not found!")
+    print("Table ID not found!")
 
 
 def delete_table():
-
     tables = load_tables()
 
-    view_tables()
+    table_id = input("Enter 5-digit Table ID: ").strip()
 
-    table_id = input("Enter Table ID to delete: ")
+    for table in tables:
+        if table["id"] == table_id:
+            if table["status"] == "Booked":
+                print("Booked table cannot be deleted!")
+                return
 
-    for t in tables:
-
-        if t["table_id"] == table_id:
-
-            tables.remove(t)
-
+            tables.remove(table)
             save_tables(tables)
-
             print("Table deleted successfully!")
-
             return
 
-    print("Table not found!")
+    print("Table ID not found!")
 
 
-def book_table(staff_name):
+def table_management():
+    create_default_tables()
 
-    tables = load_tables()
+    while True:
+        print("\n========================================")
+        print("          TABLE MANAGEMENT")
+        print("========================================")
+        print("1. View Tables")
+        print("2. Add Table")
+        print("3. Update Table")
+        print("4. Book Table")
+        print("5. Delete Table")
+        print("6. Back")
+        print("========================================")
 
-    bookings = load_bookings()
+        choice = input("Enter your choice: ").strip()
 
-    customer = input("Enter Customer Name: ")
+        if choice == "1":
+            view_tables()
 
-    phone = input("Enter Phone Number: ")
+        elif choice == "2":
+            add_table()
 
-    number_of_people = int(
-        input("Enter Number of People: ")
-    )
+        elif choice == "3":
+            update_table()
 
-    table_size = input(
-        "Enter Table Size (VIP/Medium/Short): "
-    )
+        elif choice == "4":
+            book_table()
 
+        elif choice == "5":
+            delete_table()
 
-    for t in tables:
+        elif choice == "6":
+            break
 
-        if t["size"].lower() == table_size.lower():
+        else:
+            print("Invalid choice! Please try again.")
 
-            if t["booked"] + number_of_people <= t["capacity"]:
-
-                t["booked"] += number_of_people
-
-                booking_id = str(uuid.uuid4())
-
-                booking = {
-                    "booking_id": booking_id,
-                    "customer": customer,
-                    "phone": phone,
-                    "size": table_size,
-                    "people": number_of_people,
-                    "staff": staff_name,
-                    "time": str(datetime.datetime.now())
-                }
-
-                bookings.append(booking)
-
-                save_tables(tables)
-
-                save_bookings(bookings)
-
-                print("Table booked successfully!")
-
-                return
-
-            else:
-
-                print(
-                    "Not enough seats available in",
-                    table_size
-                )
-
-                return
-
-    print("Table size not found!")

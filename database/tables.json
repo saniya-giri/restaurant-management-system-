@@ -1,26 +1,242 @@
 [
     {
-        "id": 1,
-        "size": "VIP",
-        "capacity": 20,
-        "booked": 0
+        "id": "60392",
+        "capacity": 8,
+        "charge": 1000,
+        "category": "VIP",
+        "status": "Available",
+        "booking_time": null
     },
     {
-        "id": 2,
-        "size": "Medium",
-        "capacity": 20,
-        "booked": 0
+        "id": "85372",
+        "capacity": 8,
+        "charge": 1000,
+        "category": "VIP",
+        "status": "Available",
+        "booking_time": null
     },
     {
-        "id": 3,
-        "size": "Short",
-        "capacity": 20,
-        "booked": 0
+        "id": "53564",
+        "capacity": 8,
+        "charge": 1000,
+        "category": "VIP",
+        "status": "Available",
+        "booking_time": null
     },
     {
-        "id": 4,
-        "size": "1",
+        "id": "57549",
+        "capacity": 8,
+        "charge": 1000,
+        "category": "VIP",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "70955",
+        "capacity": 8,
+        "charge": 1000,
+        "category": "VIP",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "71894",
+        "capacity": 8,
+        "charge": 1000,
+        "category": "VIP",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "28732",
+        "capacity": 8,
+        "charge": 1000,
+        "category": "VIP",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "60857",
+        "capacity": 8,
+        "charge": 1000,
+        "category": "VIP",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "39768",
+        "capacity": 8,
+        "charge": 1000,
+        "category": "VIP",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "28819",
+        "capacity": 8,
+        "charge": 1000,
+        "category": "VIP",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "31353",
+        "capacity": 4,
+        "charge": 500,
+        "category": "Medium",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "40533",
+        "capacity": 4,
+        "charge": 500,
+        "category": "Medium",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "16564",
+        "capacity": 4,
+        "charge": 500,
+        "category": "Medium",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "19450",
+        "capacity": 4,
+        "charge": 500,
+        "category": "Medium",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "30076",
+        "capacity": 4,
+        "charge": 500,
+        "category": "Medium",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "31969",
+        "capacity": 4,
+        "charge": 500,
+        "category": "Medium",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "63348",
+        "capacity": 4,
+        "charge": 500,
+        "category": "Medium",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "62565",
+        "capacity": 4,
+        "charge": 500,
+        "category": "Medium",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "77119",
+        "capacity": 4,
+        "charge": 500,
+        "category": "Medium",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "54895",
+        "capacity": 4,
+        "charge": 500,
+        "category": "Medium",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "61207",
         "capacity": 2,
-        "booked": 0
+        "charge": 250,
+        "category": "Short",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "34511",
+        "capacity": 2,
+        "charge": 250,
+        "category": "Short",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "35881",
+        "capacity": 2,
+        "charge": 250,
+        "category": "Short",
+        "status": "Booked",
+        "booking_time": "2026-10-12T19:48:31.229642"
+    },
+    {
+        "id": "93736",
+        "capacity": 2,
+        "charge": 250,
+        "category": "Short",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "62784",
+        "capacity": 2,
+        "charge": 250,
+        "category": "Short",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "97055",
+        "capacity": 2,
+        "charge": 250,
+        "category": "Short",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "13306",
+        "capacity": 2,
+        "charge": 250,
+        "category": "Short",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "38865",
+        "capacity": 2,
+        "charge": 250,
+        "category": "Short",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "49572",
+        "capacity": 2,
+        "charge": 250,
+        "category": "Short",
+        "status": "Available",
+        "booking_time": null
+    },
+    {
+        "id": "33931",
+        "capacity": 2,
+        "charge": 250,
+        "category": "Short",
+        "status": "Available",
+        "booking_time": null
     }
 ]

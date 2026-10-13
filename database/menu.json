@@ -1,78 +1,326 @@
-
 [
-    {"id": 101, "name": "Veg Burger", "price": 80, "category": "Veg"},
-    {"id": 102, "name": "Paneer Burger", "price": 120, "category": "Veg"},
-    {"id": 103, "name": "Veg Pizza", "price": 150, "category": "Veg"},
-    {"id": 104, "name": "Paneer Pizza", "price": 200, "category": "Veg"},
-    {"id": 105, "name": "Veg Momos", "price": 80, "category": "Veg"},
-    {"id": 106, "name": "Paneer Momos", "price": 110, "category": "Veg"},
-    {"id": 107, "name": "Veg Roll", "price": 80, "category": "Veg"},
-    {"id": 108, "name": "Paneer Roll", "price": 110, "category": "Veg"},
-    {"id": 109, "name": "Veg Sandwich", "price": 70, "category": "Veg"},
-    {"id": 110, "name": "Cheese Sandwich", "price": 90, "category": "Veg"},
-    {"id": 111, "name": "French Fries", "price": 70, "category": "Veg"},
-    {"id": 112, "name": "Peri Peri Fries", "price": 90, "category": "Veg"},
-    {"id": 113, "name": "Veg Thali", "price": 200, "category": "Veg"},
-    {"id": 114, "name": "Dal Rice", "price": 150, "category": "Veg"},
-    {"id": 115, "name": "Paneer Butter Masala", "price": 220, "category": "Veg"},
-    {"id": 116, "name": "Veg Soup", "price": 100, "category": "Veg"},
-    {"id": 117, "name": "Veg Chowmein", "price": 140, "category": "Veg"},
-    {"id": 118, "name": "Veg Fried Rice", "price": 160, "category": "Veg"},
-    {"id": 119, "name": "Veg Cutlet", "price": 80, "category": "Veg"},
-    {"id": 120, "name": "Veg Pakora", "price": 70, "category": "Veg"},
-
-   
-    {"id": 201, "name": "Chicken Burger", "price": 150, "category": "Non-Veg"},
-    {"id": 202, "name": "Chicken Pizza", "price": 220, "category": "Non-Veg"},
-    {"id": 203, "name": "Egg Roll", "price": 100, "category": "Non-Veg"},
-    {"id": 204, "name": "Chicken Roll", "price": 130, "category": "Non-Veg"},
-    {"id": 205, "name": "Chicken Sandwich", "price": 140, "category": "Non-Veg"},
-    {"id": 206, "name": "Mutton Curry", "price": 300, "category": "Non-Veg"},
-    {"id": 207, "name": "Fish Fry", "price": 250, "category": "Non-Veg"},
-    {"id": 208, "name": "Chicken Biryani", "price": 250, "category": "Non-Veg"},
-    {"id": 209, "name": "Mutton Biryani", "price": 350, "category": "Non-Veg"},
-    {"id": 210, "name": "Chicken Momos", "price": 120, "category": "Non-Veg"},
-    {"id": 211, "name": "Chicken Wings", "price": 180, "category": "Non-Veg"},
-    {"id": 212, "name": "Grilled Chicken", "price": 200, "category": "Non-Veg"},
-    {"id": 213, "name": "Chicken Soup", "price": 100, "category": "Non-Veg"},
-    {"id": 214, "name": "Fish Curry", "price": 280, "category": "Non-Veg"},
-    {"id": 215, "name": "Prawn Curry", "price": 320, "category": "Non-Veg"},
-    {"id": 216, "name": "Egg Curry", "price": 150, "category": "Non-Veg"},
-    {"id": 217, "name": "Chicken Kebab", "price": 200, "category": "Non-Veg"},
-    {"id": 218, "name": "Mutton Kebab", "price": 250, "category": "Non-Veg"},
-    {"id": 219, "name": "Chicken Shawarma", "price": 180, "category": "Non-Veg"},
-    {"id": 220, "name": "Chicken Tikka", "price": 220, "category": "Non-Veg"},
-
-    {"id": 301, "name": "Veg Hakka Noodles", "price": 150, "category": "Chinese"},
-    {"id": 302, "name": "Schezwan Fried Rice", "price": 160, "category": "Chinese"},
-    {"id": 303, "name": "Spring Roll", "price": 120, "category": "Chinese"},
-    {"id": 304, "name": "Veg Manchurian", "price": 150, "category": "Chinese"},
-    {"id": 305, "name": "Paneer Manchurian", "price": 180, "category": "Chinese"},
-    {"id": 306, "name": "Hot & Sour Soup", "price": 120, "category": "Chinese"},
-    {"id": 307, "name": "Veg Momos (Chinese)", "price": 100, "category": "Chinese"},
-    {"id": 308, "name": "Chicken Momos (Chinese)", "price": 130, "category": "Chinese"},
-    {"id": 309, "name": "Chicken Hakka Noodles", "price": 180, "category": "Chinese"},
-    {"id": 310, "name": "Chicken Fried Rice", "price": 200, "category": "Chinese"},
-    {"id": 311, "name": "Chicken Chowmein", "price": 180, "category": "Chinese"},
-    {"id": 312, "name": "Chicken Manchurian", "price": 220, "category": "Chinese"},
-    {"id": 313, "name": "Fish Manchurian", "price": 250, "category": "Chinese"},
-    {"id": 314, "name": "Prawn Fried Rice", "price": 240, "category": "Chinese"},
-    {"id": 315, "name": "Egg Fried Rice", "price": 160, "category": "Chinese"},
-    {"id": 316, "name": "Egg Chowmein", "price": 150, "category": "Chinese"},
-    {"id": 317, "name": "Schezwan Noodles", "price": 170, "category": "Chinese"},
-    {"id": 318, "name": "Mixed Fried Rice", "price": 200, "category": "Chinese"},
-    {"id": 319, "name": "Veg Soup (Chinese)", "price": 110, "category": "Chinese"},
-    {"id": 320, "name": "Chicken Soup (Chinese)", "price": 130, "category": "Chinese"},
-
-   
-    {"id": 401, "name": "Cold Drink", "price": 40, "category": "Drinks"},
-    {"id": 402, "name": "Lemonade", "price": 50, "category": "Drinks"},
-    {"id": 403, "name": "Cold Coffee", "price": 80, "category": "Drinks"},
-    {"id": 404, "name": "Milkshake", "price": 120, "category": "Drinks"},
-    {"id": 405, "name": "Ice Cream Float", "price": 100, "category": "Drinks"},
-    {"id": 406, "name": "Orange Juice", "price": 60, "category": "Drinks"},
-    {"id": 407, "name": "Apple Juice", "price": 70, "category": "Drinks"},
-    {"id": 408, "name": "Mango Shake", "price": 90, "category": "Drinks"}
+    {
+        "id": "f1422",
+        "name": "Paneer Butter Masala",
+        "price": 180,
+        "category": "Veg-food"
+    },
+    {
+        "id": "f2343",
+        "name": "Dal Tadka",
+        "price": 120,
+        "category": "Veg-food"
+    },
+    {
+        "id": "f2421",
+        "name": "Chole Bhature",
+        "price": 150,
+        "category": "Veg-food"
+    },
+    {
+        "id": "f4834",
+        "name": "Veg Biryani",
+        "price": 160,
+        "category": "Veg-food"
+    },
+    {
+        "id": "f8294",
+        "name": "Aloo Paratha",
+        "price": 100,
+        "category": "Veg-food"
+    },
+    {
+        "id": "f3842",
+        "name": "Palak Paneer",
+        "price": 170,
+        "category": "Veg-food"
+    },
+    {
+        "id": "f9281",
+        "name": "Masala Dosa",
+        "price": 130,
+        "category": "Veg-food"
+    },
+    {
+        "id": "f4820",
+        "name": "Idli Sambhar",
+        "price": 90,
+        "category": "Veg-food"
+    },
+    {
+        "id": "f4802",
+        "name": "Rajma Chawal",
+        "price": 140,
+        "category": "Veg-food"
+    },
+    {
+        "id": "f2801",
+        "name": "Veg Pulao",
+        "price": 150,
+        "category": "Veg-food"
+    },
+    {
+        "id": "f8071",
+        "name": "Bhindi Masala",
+        "price": 130,
+        "category": "Veg-food"
+    },
+    {
+        "id": "f9212",
+        "name": "Mix Veg Curry",
+        "price": 160,
+        "category": "Veg-food"
+    },
+    {
+        "id": "f0827",
+        "name": "Kadhai Paneer",
+        "price": 180,
+        "category": "Veg-food"
+    },
+    {
+        "id": "f1934",
+        "name": "Malai Kofta",
+        "price": 190,
+        "category": "Veg-food"
+    },
+    {
+        "id": "f3828",
+        "name": "Veg Thali",
+        "price": 250,
+        "category": "Veg-food"
+    },
+    {
+        "id": "f0235",
+        "name": "Chicken Curry",
+        "price": 220,
+        "category": "Non-Veg-food"
+    },
+    {
+        "id": "f2417",
+        "name": "Mutton Rogan Josh",
+        "price": 300,
+        "category": "Non-Veg-food"
+    },
+    {
+        "id": "f3892",
+        "name": "Fish Curry",
+        "price": 250,
+        "category": "Non-Veg-food"
+    },
+    {
+        "id": "f2883",
+        "name": "Egg Curry",
+        "price": 150,
+        "category": "Non-Veg-food"
+    },
+    {
+        "id": "f2037",
+        "name": "Chicken Biryani",
+        "price": 240,
+        "category": "Non-Veg-food"
+    },
+    {
+        "id": "f2635",
+        "name": "Mutton Biryani",
+        "price": 280,
+        "category": "Non-Veg-food"
+    },
+    {
+        "id": "f2074",
+        "name": "Tandoori Chicken",
+        "price": 260,
+        "category": "Non-Veg-food"
+    },
+    {
+        "id": "f2083",
+        "name": "Butter Chicken",
+        "price": 270,
+        "category": "Non-Veg-food"
+    },
+    {
+        "id": "f2634",
+        "name": "Chicken Tikka",
+        "price": 230,
+        "category": "Non-Veg-food"
+    },
+    {
+        "id": "f2750",
+        "name": "Fish Fry",
+        "price": 220,
+        "category": "Non-Veg-food"
+    },
+    {
+        "id": "f2431",
+        "name": "Prawn Curry",
+        "price": 280,
+        "category": "Non-Veg-food"
+    },
+    {
+        "id": "f2322",
+        "name": "Keema Curry",
+        "price": 250,
+        "category": "Non-Veg-food"
+    },
+    {
+        "id": "f2157",
+        "name": "Egg Biryani",
+        "price": 180,
+        "category": "Non-Veg-food"
+    },
+    {
+        "id": "f2714",
+        "name": "Chicken Korma",
+        "price": 240,
+        "category": "Non-Veg-food"
+    },
+    {
+        "id": "f4215",
+        "name": "Mutton Kebab",
+        "price": 260,
+        "category": "Non-Veg-food"
+    },
+    {
+        "id": "f3051",
+        "name": "Veg Hakka Noodles",
+        "price": 150,
+        "category": "Chinese-food"
+    },
+    {
+        "id": "f3832",
+        "name": "Veg Fried Rice",
+        "price": 140,
+        "category": "Chinese-food"
+    },
+    {
+        "id": "f3633",
+        "name": "Veg Manchurian",
+        "price": 160,
+        "category": "Chinese-food"
+    },
+    {
+        "id": "f3094",
+        "name": "Paneer Chilli",
+        "price": 180,
+        "category": "Chinese-food"
+    },
+    {
+        "id": "f3015",
+        "name": "Spring Roll",
+        "price": 120,
+        "category": "Chinese-food"
+    },
+    {
+        "id": "f3062",
+        "name": "Schezwan Noodles",
+        "price": 160,
+        "category": "Chinese-food"
+    },
+    {
+        "id": "f3071",
+        "name": "Chicken Fried Rice",
+        "price": 180,
+        "category": "Chinese-food"
+    },
+    {
+        "id": "f3086",
+        "name": "Chicken Manchurian",
+        "price": 200,
+        "category": "Chinese-food"
+    },
+    {
+        "id": "f3065",
+        "name": "Chilli Chicken",
+        "price": 220,
+        "category": "Chinese-food"
+    },
+    {
+        "id": "f3164",
+        "name": "Garlic Noodles",
+        "price": 150,
+        "category": "Chinese-food"
+    },
+    {
+        "id": "f3141",
+        "name": "Egg Fried Rice",
+        "price": 160,
+        "category": "Chinese-food"
+    },
+    {
+        "id": "f3124",
+        "name": "Chicken Chowmein",
+        "price": 190,
+        "category": "Chinese-food"
+    },
+    {
+        "id": "f3135",
+        "name": "Veg Chowmein",
+        "price": 150,
+        "category": "Chinese-food"
+    },
+    {
+        "id": "f3143",
+        "name": "Honey Chilli Potato",
+        "price": 170,
+        "category": "Chinese-food"
+    },
+    {
+        "id": "f3162",
+        "name": "Momos (Veg)",
+        "price": 120,
+        "category": "Chinese-food"
+    },
+    {
+        "id": "f4013",
+        "name": "Cold Drink",
+        "price": 40,
+        "category": "Drinks"
+    },
+    {
+        "id": "f4022",
+        "name": "Lassi",
+        "price": 60,
+        "category": "Drinks"
+    },
+    {
+        "id": "f4033",
+        "name": "Masala Chai",
+        "price": 30,
+        "category": "Drinks"
+    },
+    {
+        "id": "f4034",
+        "name": "Coffee",
+        "price": 50,
+        "category": "Drinks"
+    },
+    {
+        "id": "f4045",
+        "name": "Cold Coffee",
+        "price": 80,
+        "category": "Drinks"
+    },
+    {
+        "id": "f4206",
+        "name": "Milkshake",
+        "price": 100,
+        "category": "Drinks"
+    },
+    {
+        "id": "f2315",
+        "name": "mango shake",
+        "price": 30.0,
+        "category": "Drinks"
+    },
+    {
+        "id": "f2337",
+        "name": "water",
+        "price": 20.0,
+        "category": "Drinks"
+    },
+    {
+        "id": "f5368",
+        "name": "fish",
+        "price": 200.0,
+        "category": "Non-Veg-food"
+    }
 ]
-   
-
